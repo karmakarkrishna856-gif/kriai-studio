@@ -171,4 +171,448 @@
 <span class="material-symbols-outlined text-sm">zoom_in</span>
 <span class="truncate">Zoom In Push</span>
 </button>
-<bu
+<button class="cam-btn flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-ui text-label-ui transition-all" onclick="selectCamera(this)">
+<span class="material-symbols-outlined text-sm">sync</span>
+<span class="truncate">Orbit 180°</span>
+</button>
+<button class="cam-btn flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-ui text-label-ui transition-all" onclick="selectCamera(this)">
+<span class="material-symbols-outlined text-sm">west</span>
+<span class="truncate">Pan Left</span>
+</button>
+<button class="cam-btn flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-ui text-label-ui transition-all" onclick="selectCamera(this)">
+<span class="material-symbols-outlined text-sm">north</span>
+<span class="truncate">Crane Up</span>
+</button>
+<button class="cam-btn flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-ui text-label-ui transition-all" onclick="selectCamera(this)">
+<span class="material-symbols-outlined text-sm">filter_none</span>
+<span class="truncate">Static Tripod</span>
+</button>
+<button class="cam-btn flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-ui text-label-ui transition-all" onclick="selectCamera(this)">
+<span class="material-symbols-outlined text-sm">vibration</span>
+<span class="truncate">Handheld Shake</span>
+</button>
+</div>
+</div>
+<!-- Duration, Resolution & Seed Strip -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm pt-1">
+<!-- Duration selector -->
+<div class="flex flex-col gap-1">
+<label class="font-label-ui text-label-ui text-on-surface-variant">Duration & Cost</label>
+<div class="grid grid-cols-3 gap-1 bg-surface-container-lowest p-1 rounded-lg">
+<button class="duration-btn py-1 rounded text-center font-code-param text-code-param text-on-surface-variant hover:text-on-surface transition-all" onclick="selectDuration(this, 10)">
+<span>5s</span> <span class="block text-[10px] text-outline opacity-80">-10c</span>
+</button>
+<button class="duration-btn active-dur py-1 rounded text-center font-code-param text-code-param bg-surface-container-high text-primary font-semibold transition-all" onclick="selectDuration(this, 15)">
+<span>10s</span> <span class="block text-[10px] text-secondary">-15c</span>
+</button>
+<button class="duration-btn py-1 rounded text-center font-code-param text-code-param text-on-surface-variant hover:text-on-surface transition-all" onclick="selectDuration(this, 25)">
+<span>15s</span> <span class="block text-[10px] text-outline opacity-80">-25c</span>
+</button>
+</div>
+</div>
+<!-- Resolution selector -->
+<div class="flex flex-col gap-1">
+<label class="font-label-ui text-label-ui text-on-surface-variant">Resolution & Rate</label>
+<div class="grid grid-cols-3 gap-1 bg-surface-container-lowest p-1 rounded-lg">
+<button class="res-btn py-1 rounded text-center font-code-param text-code-param text-on-surface-variant hover:text-on-surface transition-all" onclick="selectRes(this)">720p</button>
+<button class="res-btn active-res py-1 rounded text-center font-code-param text-code-param bg-surface-container-high text-secondary font-semibold transition-all" onclick="selectRes(this)">1080p</button>
+<button class="res-btn py-1 rounded text-center font-code-param text-code-param text-on-surface-variant hover:text-on-surface transition-all" onclick="selectRes(this)">4K Ultra</button>
+</div>
+</div>
+</div>
+<!-- Seed Controller -->
+<div class="flex items-center justify-between bg-surface-container-lowest px-3 py-2 rounded-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">casino</span>
+<span class="font-code-param text-code-param text-on-surface-variant">Seed:</span>
+<input class="bg-transparent text-secondary font-code-param text-code-param focus:outline-none w-28" id="seed-input" type="text" value="839201948"/>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface font-code-param text-code-param flex items-center gap-1 transition-colors" onclick="randomizeSeed()">
+<span class="material-symbols-outlined text-sm">autorenew</span>
+<span>Shuffle</span>
+</button>
+</div>
+<!-- Big Vibrant Generate Action Bar -->
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full relative group overflow-hidden bg-gradient-to-r from-primary-container via-inverse-primary to-primary py-3.5 px-4 rounded-xl text-on-primary font-headline-md text-title-sm tracking-wide shadow-[0_0_24px_rgba(160,120,255,0.45)] hover:shadow-[0_0_32px_rgba(160,120,255,0.7)] transition-all flex items-center justify-center gap-2 active:scale-[0.99]" id="generate-trigger-btn" onclick="triggerStudioRender()">
+<span class="material-symbols-outlined text-xl group-hover:rotate-12 transition-transform">flare</span>
+<span id="generate-btn-text">Generate Cinematic Video</span>
+<span class="bg-surface-container-lowest/40 backdrop-blur-md px-2 py-0.5 rounded text-xs text-primary-fixed ml-1">15 Credits</span>
+</button>
+<div class="flex items-center justify-between px-1 text-on-surface-variant font-code-param text-code-param">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Available: <strong>150 / 200 Credits</strong></span>
+</span>
+<span class="text-outline">Refills in 14h 22m</span>
+</div>
+</div>
+</div>
+<!-- RIGHT PANEL: Live Video Player, Timeline & Generation Queue (xl:col-span-7) -->
+<div class="w-full xl:col-span-7 2xl:col-span-8 flex flex-col gap-space-md">
+<!-- Large Central Video Monitor Viewport -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-sm md:p-space-md shadow-xl flex flex-col gap-space-sm">
+<!-- Cinema Viewport Box -->
+<div class="relative w-full aspect-video bg-surface-container-lowest rounded-lg overflow-hidden shadow-2xl flex items-center justify-center group">
+<!-- Video Canvas Simulated Output -->
+<img class="w-full h-full object-cover" data-alt="Breathtaking photorealistic cinematic scene of a young Asian heroine standing beneath illuminated weeping cherry trees, pink blossom petals floating in midair, wind billowing silk sleeves, dusk moonlight, shallow depth of field, 8k render" id="active-video-canvas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6cMyEJ5CWxp7e8x6X0yQHCTPZp5tuRPMXhmR1bG29TAb4YPyvk6a3Hb14N_7vVeCb_epgCzHxwklQj1n7Y_sa0R7VgDta56APfDG4EU_I03-U5Npim9NpkjEbTB0eM_8CyPoDsxV0w1pAEHdl4PtVhdILxduyvt3HM1H1eLoyOAeYH6Om6a5L4sIHa8fVUnN0SJtwCN9khyH9Ur66HiAyzFl7DK2L80JW2LTISI0"/>
+<!-- Top Telemetry HUD Overlay -->
+<div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+<div class="flex items-center gap-1.5 bg-surface-container-lowest/70 backdrop-blur-md px-2.5 py-1 rounded-md text-on-surface">
+<span class="material-symbols-outlined text-xs text-error animate-pulse">fiber_manual_record</span>
+<span class="font-code-param text-code-param uppercase">Kling 1.5 HD Neural Output</span>
+<span class="text-outline-variant">|</span>
+<span class="font-code-param text-code-param text-secondary">24.00 FPS Cinema</span>
+</div>
+<div class="flex items-center gap-2 pointer-events-auto">
+<span class="bg-surface-container-lowest/70 backdrop-blur-md px-2 py-0.5 rounded text-on-surface font-code-param text-code-param">1080p DCI</span>
+<button class="bg-surface-container-lowest/70 backdrop-blur-md hover:bg-surface-container-high text-on-surface p-1.5 rounded-md transition-colors" onclick="toggleFullscreen()">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Central Hover Play/Pause Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-surface-container-lowest/20 group-hover:bg-surface-container-lowest/40 transition-colors pointer-events-none">
+<button class="pointer-events-auto w-16 h-16 rounded-full bg-primary-container/85 hover:bg-primary-container text-on-primary flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95" onclick="togglePlayback()">
+<span class="material-symbols-outlined text-3xl" id="play-pause-icon">play_arrow</span>
+</button>
+</div>
+<!-- Bottom Playback Scrubber & Action Controls -->
+<div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/60 to-transparent flex flex-col gap-2">
+<!-- Timeline Scrubber Bar -->
+<div class="w-full flex items-center gap-2.5">
+<span class="font-code-param text-code-param text-on-surface font-semibold" id="current-timecode">00:04.28</span>
+<div class="relative flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden cursor-pointer group/scrub">
+<div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-[42%] relative" id="timeline-progress">
+<span class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-surface rounded-full border-2 border-secondary shadow-md opacity-0 group-hover/scrub:opacity-100 transition-opacity"></span>
+</div>
+</div>
+<span class="font-code-param text-code-param text-on-surface-variant">00:10.00</span>
+</div>
+<!-- Viewport Toolbar -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-secondary hover:bg-surface-container-high/60 transition-colors" onclick="toggleLoop(this)" title="Loop playback">
+<span class="material-symbols-outlined text-base">repeat</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface transition-colors" onclick="stepFrame(-1)" title="Previous frame">
+<span class="material-symbols-outlined text-base">skip_previous</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface transition-colors" onclick="stepFrame(1)" title="Next frame">
+<span class="material-symbols-outlined text-base">skip_next</span>
+</button>
+<span class="text-outline-variant mx-1">|</span>
+<span class="font-code-param text-code-param text-on-surface-variant">Seed #839201948</span>
+</div>
+<!-- Export & Expansion Quick Actions -->
+<div class="flex items-center gap-1.5">
+<button class="bg-surface-container-high/80 hover:bg-surface-container-highest text-on-surface px-2.5 py-1 rounded text-code-param font-code-param flex items-center gap-1 transition-colors" onclick="extendVideoDuration()">
+<span class="material-symbols-outlined text-xs text-primary">add_circle</span>
+<span>Extend +5s</span>
+</button>
+<button class="bg-surface-container-high/80 hover:bg-surface-container-highest text-on-surface px-2.5 py-1 rounded text-code-param font-code-param flex items-center gap-1 transition-colors" onclick="branchVariation()">
+<span class="material-symbols-outlined text-xs text-secondary">alt_route</span>
+<span>Variation</span>
+</button>
+<button class="bg-surface-container-high/80 hover:bg-surface-container-highest text-on-surface px-2.5 py-1 rounded text-code-param font-code-param flex items-center gap-1 transition-colors" onclick="exportDepthMap()">
+<span class="material-symbols-outlined text-xs">layers</span>
+<span>Depth Map</span>
+</button>
+<button class="bg-surface-container-high/80 hover:bg-surface-container-highest text-on-surface p-1 rounded transition-colors" title="Download Rendered MP4">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Video Generation Metadata Chip Bar -->
+<div class="flex items-center justify-between flex-wrap gap-2 pt-1 px-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-surface-container-lowest px-2 py-1 rounded text-code-param font-code-param text-on-surface-variant flex items-center gap-1">
+<span class="text-primary font-bold">Lens:</span> 85mm f/1.4 Anamorphic
+              </span>
+<span class="bg-surface-container-lowest px-2 py-1 rounded text-code-param font-code-param text-on-surface-variant flex items-center gap-1">
+<span class="text-secondary font-bold">Denoise:</span> 0.72 Euler Discrete
+              </span>
+<span class="bg-surface-container-lowest px-2 py-1 rounded text-code-param font-code-param text-on-surface-variant flex items-center gap-1">
+<span class="text-tertiary font-bold">CFG Scale:</span> 7.5
+              </span>
+</div>
+<button class="font-code-param text-code-param text-primary hover:text-primary-fixed flex items-center gap-0.5">
+<span>View Computational Graph</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- BOTTOM PANEL: Active Generation Queue & Recent Iterations -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-sm md:p-space-md shadow-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-primary">dynamic_feed</span>
+<h2 class="font-title-sm text-title-sm text-on-surface font-semibold tracking-tight">Active Generation Queue & Recent Iterations</h2>
+</div>
+<span class="font-code-param text-code-param text-on-surface-variant">3 Items Active</span>
+</div>
+<!-- Queue Container Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<!-- Card 1: Active Neural Processing Frame -->
+<div class="relative bg-surface-container-lowest rounded-lg p-2.5 flex flex-col justify-between gap-2 overflow-hidden shadow-md">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-primary-container/20 text-primary font-code-param text-code-param">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                  Synthesizing
+                </span>
+<span class="font-code-param text-code-param text-secondary font-medium">ETA 18s</span>
+</div>
+<!-- Latent Video Preview Placeholder -->
+<div class="relative aspect-video rounded overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover opacity-80" data-alt="Abstract neural latent diffusion noise gradually resolving into a cinematic courtyard scene with warm bokeh lanterns and Hanfu robes, high technical computational aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSEB6Ptl_GTQkXw7Luek4tCFcZUpvU8A3yFj-KJl6VlKnAab2QEPyRbq100FquQCpuaMNk_9XbJ6q-9LbB_edsVTq-GEwvh8bbWyWXdZuPXsUouYNkW2lfohnNZOrO9tpFp4CgYN7xideUXx16wKHyuflpmyeZEh3U1_XTLGJF23msgZxHPOZGNFRb0-0jf6E1UdcBPXZYjPYWDPkk8kUI0olvyzG1EdwuRDHGQ58"/>
+<div class="absolute inset-0 bg-surface-container-lowest/40 flex items-center justify-center">
+<span class="font-code-param text-code-param text-primary-fixed bg-surface-container-lowest/80 px-2 py-0.5 rounded backdrop-blur-sm">Step 36 / 50</span>
+</div>
+</div>
+<!-- Progress bar with iridescent styling -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-code-param font-code-param">
+<span class="text-on-surface-variant">Neural Inference</span>
+<span class="text-primary font-bold">72%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-secondary to-primary-container animate-pulse rounded-full w-[72%]"></div>
+</div>
+</div>
+</div>
+<!-- Card 2: Completed Scene Clip -->
+<div class="relative bg-surface-container-lowest rounded-lg p-2.5 flex flex-col justify-between gap-2 shadow-md group hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-code-param text-code-param">
+<span class="material-symbols-outlined text-xs text-secondary">check_circle</span>
+                  Completed 10s
+                </span>
+<span class="font-code-param text-code-param text-on-surface-variant">2m ago</span>
+</div>
+<div class="relative aspect-video rounded overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Cinematic neo-noir Asian film shot of a dark alleyway covered in glossy rain puddles reflecting neon magenta and cyan signs, brooding atmosphere, 85mm anamorphic lens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk0_YilYaavy7_HDKWOwpx8V7LLsUTaAUwu4YphXnjGf8SoayQOJoN4VuIloXNKgOr_tRCs58HIgRtJCs5C2foXgHosFDLi7cuI5hblHTOJn1RWsGr4b4nEoqbYbA_Lbg8OjkKHYYY0RBX8fx1HYY_hlilRiuQs26LdXf1rZz05AjEd_UMvJVdpbfix-OZ1aH05U_I6YVwzAR1R01lWXVovQf2xcDMqems0VcIafA"/>
+<div class="absolute inset-0 bg-surface-container-lowest/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-base">play_arrow</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface font-medium truncate">Night rain alleyway standoff</span>
+<span class="font-code-param text-code-param text-on-surface-variant">Kling 1.5 • 1080p • 24fps</span>
+</div>
+</div>
+<!-- Card 3: Completed Scene Clip -->
+<div class="relative bg-surface-container-lowest rounded-lg p-2.5 flex flex-col justify-between gap-2 shadow-md group hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-tertiary/10 text-tertiary font-code-param text-code-param">
+<span class="material-symbols-outlined text-xs">history_edu</span>
+                  Historical C-Drama
+                </span>
+<span class="font-code-param text-code-param text-on-surface-variant">14m ago</span>
+</div>
+<div class="relative aspect-video rounded overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Opulent ancient royal palace banquet scene with hundreds of flickering candles, golden goblets, flowing embroidered silk garments, cinematic soft haze atmosphere, 4k master" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBst4ZuKyr0yxcCYYgxuS23wp5FItLnKfqHkD8spdqRbNCAHlMS8jT2IYhU8al6YC7I-nhADsvL-alE6U5bbp9zTadEOVYpcyRd-m9-GBPvhwHvQ_o5iUsFG6K4MQQhW-t1Zevjp6eUuymOJGlaF6qLsx2kfW0tTWlt_5shTx8zH_XR52YqR_NnWT58Pcg9vmPVVU1DUyVd4ob7MEmyQB8IzqzHNmEGmHAUdWrM1e0"/>
+<div class="absolute inset-0 bg-surface-container-lowest/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-base">play_arrow</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface font-medium truncate">Palace banquet candlelight dialogue</span>
+<span class="font-code-param text-code-param text-on-surface-variant">Wan2.1 • 1080p • 5s</span>
+</div>
+</div>
+</div>
+<!-- Backend Direct Integration Status -->
+<div class="w-full mt-1 bg-surface-container-lowest/80 px-3 py-2 rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-code-param text-code-param text-on-surface-variant">
+                Local ComfyUI / FastAPI Bridge: <strong class="text-on-surface font-medium">ws://127.0.0.1:8188</strong> (Latency 12ms)
+              </span>
+</div>
+<div class="flex items-center gap-3 text-code-param font-code-param text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-secondary">shield</span>
+<span>API Vault Locked</span>
+</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-primary">offline_bolt</span>
+<span>Direct Node Passthrough Active</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Studio Interactive State Machine Logic -->
+<script>
+    function switchMode(mode) {
+      const t2vTab = document.getElementById('mode-t2v-tab');
+      const i2vTab = document.getElementById('mode-i2v-tab');
+      const i2vPanel = document.getElementById('i2v-panel');
+
+      if (mode === 'i2v') {
+        t2vTab.className = "py-2 px-3 rounded-md text-center font-label-ui text-label-ui flex items-center justify-center gap-1.5 text-on-surface-variant hover:text-on-surface transition-all";
+        i2vTab.className = "py-2 px-3 rounded-md text-center font-label-ui text-label-ui flex items-center justify-center gap-1.5 bg-primary-container text-on-primary font-semibold shadow-sm transition-all";
+        i2vPanel.classList.remove('hidden');
+        i2vPanel.classList.add('flex');
+      } else {
+        t2vTab.className = "py-2 px-3 rounded-md text-center font-label-ui text-label-ui flex items-center justify-center gap-1.5 bg-primary-container text-on-primary font-semibold shadow-sm transition-all";
+        i2vTab.className = "py-2 px-3 rounded-md text-center font-label-ui text-label-ui flex items-center justify-center gap-1.5 text-on-surface-variant hover:text-on-surface transition-all";
+        i2vPanel.classList.add('hidden');
+        i2vPanel.classList.remove('flex');
+      }
+    }
+
+    function toggleNegativePrompt() {
+      const box = document.getElementById('neg-prompt-box');
+      if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
+        box.classList.add('flex');
+      } else {
+        box.classList.add('hidden');
+        box.classList.remove('flex');
+      }
+    }
+
+    function sparkleEnhancePrompt() {
+      const textarea = document.getElementById('prompt-input');
+      textarea.value = textarea.value + ", 8k photorealistic resolution, highly detailed atmospheric particle mist, dramatic Rembrandt rim lighting, award-winning cinematography masterpiece.";
+      const btn = event.currentTarget;
+      btn.classList.add('text-secondary');
+      setTimeout(() => btn.classList.remove('text-secondary'), 1000);
+    }
+
+    function clearPrompt() {
+      document.getElementById('prompt-input').value = "";
+    }
+
+    function randomizeSeed() {
+      const seedVal = Math.floor(Math.random() * 900000000) + 100000000;
+      document.getElementById('seed-input').value = seedVal;
+    }
+
+    function selectAspect(el) {
+      document.querySelectorAll('.aspect-btn').forEach(btn => {
+        btn.classList.remove('bg-surface-container-high', 'text-primary');
+        btn.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+      });
+      el.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+      el.classList.add('bg-surface-container-high', 'text-primary');
+    }
+
+    function selectCamera(el) {
+      document.querySelectorAll('.cam-btn').forEach(btn => {
+        btn.classList.remove('bg-surface-container-high', 'text-primary');
+        btn.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+      });
+      el.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+      el.classList.add('bg-surface-container-high', 'text-primary');
+    }
+
+    function selectDuration(el, credits) {
+      document.querySelectorAll('.duration-btn').forEach(btn => {
+        btn.classList.remove('bg-surface-container-high', 'text-primary', 'font-semibold');
+        btn.classList.add('text-on-surface-variant');
+      });
+      el.classList.add('bg-surface-container-high', 'text-primary', 'font-semibold');
+      el.classList.remove('text-on-surface-variant');
+    }
+
+    function selectRes(el) {
+      document.querySelectorAll('.res-btn').forEach(btn => {
+        btn.classList.remove('bg-surface-container-high', 'text-secondary', 'font-semibold');
+        btn.classList.add('text-on-surface-variant');
+      });
+      el.classList.add('bg-surface-container-high', 'text-secondary', 'font-semibold');
+      el.classList.remove('text-on-surface-variant');
+    }
+
+    let isPlaying = false;
+    let playInterval;
+    function togglePlayback() {
+      isPlaying = !isPlaying;
+      const icon = document.getElementById('play-pause-icon');
+      const progress = document.getElementById('timeline-progress');
+      const timecode = document.getElementById('current-timecode');
+
+      if (isPlaying) {
+        icon.innerText = "pause";
+        let cur = 42;
+        playInterval = setInterval(() => {
+          cur = (cur + 1) % 100;
+          progress.style.width = cur + "%";
+          const sec = (cur / 10).toFixed(2);
+          timecode.innerText = "00:" + (sec < 10 ? "0" : "") + sec;
+        }, 100);
+      } else {
+        icon.innerText = "play_arrow";
+        clearInterval(playInterval);
+      }
+    }
+
+    function stepFrame(delta) {
+      const timecode = document.getElementById('current-timecode');
+      let parts = timecode.innerText.split(':');
+      let currentSec = parseFloat(parts[1]) + (delta * 0.04);
+      if (currentSec < 0) currentSec = 0;
+      if (currentSec > 10) currentSec = 10;
+      timecode.innerText = "00:" + (currentSec < 10 ? "0" : "") + currentSec.toFixed(2);
+      document.getElementById('timeline-progress').style.width = (currentSec * 10) + "%";
+    }
+
+    function toggleLoop(btn) {
+      btn.classList.toggle('text-primary');
+      btn.classList.toggle('text-secondary');
+    }
+
+    function toggleFullscreen() {
+      const monitor = document.getElementById('active-video-canvas');
+      if (monitor.requestFullscreen) {
+        monitor.requestFullscreen().catch(() => {});
+      }
+    }
+
+    function triggerStudioRender() {
+      const btn = document.getElementById('generate-trigger-btn');
+      const text = document.getElementById('generate-btn-text');
+      const originalText = text.innerText;
+      
+      text.innerText = "Dispatching to H100 Cluster...";
+      btn.classList.add('opacity-80', 'scale-[0.98]');
+
+      setTimeout(() => {
+        text.innerText = "Neural Job Queued (#4820)";
+        setTimeout(() => {
+          text.innerText = originalText;
+          btn.classList.remove('opacity-80', 'scale-[0.98]');
+        }, 1500);
+      }, 1000);
+    }
+
+    function extendVideoDuration() {
+      alert("Extending scene timeline by +5.00s using latent optical flow continuation.");
+    }
+
+    function branchVariation() {
+      alert("Generated a high-fidelity seed variation branch for Episode 03.");
+    }
+
+    function exportDepthMap() {
+      alert("Extracting MiDaS/ZoeDepth volumetric pass to EXR container.");
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest/95 border-t border-outline-variant/20 py-2.5 px-margin"><div class="w-full flex flex-col md:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-code-param text-code-param"><div class="flex items-center gap-space-md flex-wrap justify-center"><div class="flex items-center gap-space-xs"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="text-on-surface font-semibold">Inference Engine: Ready</span></div><span class="text-outline-variant hidden sm:inline">|</span><span>Gen-3 Neural / Kling v1.5 API Compatible</span><span class="text-outline-variant hidden sm:inline">|</span><span class="text-secondary">Latency 32ms</span><span class="text-outline-variant hidden sm:inline">|</span><span>GPU Cluster Active (H100 Node-08)</span></div><div class="flex items-center gap-space-md flex-wrap justify-center"><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="documentation" href="#">Documentation</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="api-reference" href="#">API Reference</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="discord-community" href="#">Discord</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="terms-of-service" href="#">Terms</a></div></div></footer></body></html>
